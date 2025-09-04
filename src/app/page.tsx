@@ -3,12 +3,18 @@ import { FloatingNav } from "@/components/ui/floating-navbar";
 import Silk from "@/components/Silk";
 import { Button } from "@/components/ui/button";
 import ScrollReveal from "@/components/ScrollReveal"; 
+import ScrollFloat from "@/components/ScrollFloat";
 import LogoLoop from "@/components/LogoLoop";
 import FuzzyText from "@/components/FuzzyText"; // <-- Import FuzzyText
 import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss } from "react-icons/si";
 import React, { useEffect, useRef } from "react";
 import { IconHome, IconUser, IconMessage } from "@tabler/icons-react";
 import { Footer, FooterContent, FooterColumn, FooterBottom } from "@/components/ui/footer";
+import GradientText from '@/components/GradientText';
+import SpotlightCard from '@/components/SpotlightCard';
+import ShinyText from '@/components/ShinyText';
+import ScrollVelocity from '@/components/ScrollVelocity';
+
 
 const techLogos = [
   { node: <SiReact />, title: "React", href: "https://react.dev" },
@@ -95,62 +101,112 @@ export default function HomePage() {
       </section>
 
       {/* ScrollReveal section — AFTER the hero */}
-      <section className="relative z-10 bg-black text-white px-6 py-40 flex flex-col items-center justify-center">
-        <h2 className="text-4xl font-bold mb-8">A Story to Remember</h2>
-        <ScrollReveal
-          baseOpacity={0.1}
-          enableBlur={true}
-          baseRotation={5}
-          blurStrength={10}
-        >
-          When does a man die? When he is hit by a bullet? No! When he suffers a disease?
-          No! When he ate a soup made out of a poisonous mushroom?
-          No! A man dies when he is forgotten!
-          When does a man die? When he is hit by a bullet? No! When he suffers a disease?
-          No! When he ate a soup made out of a poisonous mushroom?
-          No! A man dies when he is forgotten!
-
-          When does a man die? When he is hit by a bullet? No! When he suffers a disease?
-          No! When he ate a soup made out of a poisonous mushroom?
-          No! A man dies when he is forgotten!
-
-          When does a man die? When he is hit by a bullet? No! When he suffers a disease?
-          No! When he ate a soup made out of a poisonous mushroom?
-          No! A man dies when he is forgotten!
-
-          When does a man die? When he is hit by a bullet? No! When he suffers a disease?
-          No! When he ate a soup made out of a poisonous mushroom?
-          No! A man dies when he is forgotten!
-        </ScrollReveal>
+      <section className="relative z-10 bg-white text-black dark:bg-black dark:text-white px-6 py-40 flex flex-col items-center justify-center transition-colors duration-300">
+        <ScrollFloat
+    animationDuration={1}
+    ease="back.inOut(2)"
+    scrollStart="center bottom+=50%"
+    scrollEnd="bottom bottom-=40%"
+    stagger={0.03}
+    >
+  {`When does a man die? When he is hit by a bullet? No! When he suffers a disease?
+... (repeat as needed)`}
+</ScrollFloat>
       </section>
       {/* Logos section */}
       {/* LogoLoop section — after ScrollReveal */}
-      <section className="relative z-10 bg-black dark:bg-black px-6 py-20 flex flex-col items-center justify-center">
-        <h2 className="text-3xl font-bold mb-8 text-gray-800 dark:text-white">
-          Technologies We Use
-        </h2>
-        <LogoLoop
-          logos={techLogos}
-          speed={120}
-          direction="left"
-          logoHeight={48}
-          gap={40}
-          pauseOnHover
-          scaleOnHover
-          fadeOut
-          fadeOutColor="#000000"
-          ariaLabel="Technology partners"
-        />
-      </section>
-      {/* FuzzyText section */}
-      <div className="relative z-10 bg-black text-white flex flex-col items-center justify-center min-h-screen">
-        <FuzzyText fontSize="10rem" baseIntensity={0.2} hoverIntensity={0.5} enableHover={true}>
-          404
-        </FuzzyText>
-        <FuzzyText fontSize="6rem" className="mt-8" baseIntensity={0.2} hoverIntensity={0.5} enableHover={true}>
-          bimql Error
-        </FuzzyText>
-      </div>
+      {/* Logos section */}
+    <section className="relative z-10 bg-white dark:bg-black px-4 py-20 flex flex-col items-center justify-center">
+      <h2 className="text-3xl font-bold mb-8 text-black dark:text-white">
+        Projects
+      </h2>
+      <LogoLoop
+        logos={techLogos}
+        speed={120}
+        direction="left"
+        logoHeight={48}
+        gap={40}
+        pauseOnHover
+        scaleOnHover
+        fadeOut
+        // fadeOutColor removed → auto light/dark mode
+        ariaLabel="Technology partners"
+      />
+    </section>
+{/* shiny gradient Section */}
+<div className="flex flex-col items-center text-center bg-white dark:bg-black text-black dark:text-white py-20">
+  <GradientText
+    colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+    animationSpeed={3}
+    showBorder={false}
+    className="mb-4"
+  >
+    <h3 className="testimonials-title text-6xl font-bold">
+      Loved by devs worldwide
+    </h3>
+  </GradientText>
+  <ShinyText 
+    className="text-lg text-gray-600 dark:text-gray-300 custom-class"
+    text="Join our community of developers building amazing projects with bimql."
+    disabled={false}
+    speed={2}
+  />
+</div>
+
+{/* Spotlight Cards Section */}
+<section className="px-4 py-20 bg-white dark:bg-black text-white">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      {/* Card 1 */}
+      <SpotlightCard spotlightColor="rgba(128, 90, 255, 0.25)">
+        <h2 className="text-5xl font-bold text-purple-400 mb-2">100%</h2>
+        <h3 className="text-xl font-semibold mb-1">Free & Open Source</h3>
+        <p className="text-sm text-gray-300">Loved by devs around the world</p>
+      </SpotlightCard>
+
+      {/* Card 2 */}
+      <SpotlightCard spotlightColor="rgba(64, 255, 170, 0.25)">
+        <h2 className="text-5xl font-bold text-green-400 mb-2">110+</h2>
+        <h3 className="text-xl font-semibold mb-1">Creative Components</h3>
+        <p className="text-sm text-gray-300">Growing weekly & only getting better</p>
+      </SpotlightCard>
+
+      {/* Card 3 */}
+      <SpotlightCard spotlightColor="rgba(255, 64, 121, 0.25)">
+        <h2 className="text-5xl font-bold text-pink-400 mb-2">4</h2>
+        <h3 className="text-xl font-semibold mb-1">Component Variants</h3>
+        <p className="text-sm text-gray-300">Pick your favourite technologies</p>
+      </SpotlightCard>
+
+    </div>
+  </div>
+</section>
+
+
+    {/* FuzzyText section
+    <div className="relative z-10 bg-white text-black dark:bg-black dark:text-white flex flex-col items-center justify-center min-h-screen transition-colors duration-300">
+      <FuzzyText
+        fontSize="10rem"
+        baseIntensity={0.2}
+        hoverIntensity={0.5}
+        enableHover={true}
+        className="text-black dark:text-white" // <- theme-aware color
+      >
+        404
+      </FuzzyText>
+      <FuzzyText
+        fontSize="6rem"
+        className="mt-8 text-black dark:text-white" // <- theme-aware color
+        baseIntensity={0.2}
+        hoverIntensity={0.5}
+        enableHover={true}
+      >
+        bimql Error
+      </FuzzyText>
+    </div> */}
+
+
 
       {/* Footer */}
       <div className="w-full bg-background">
@@ -200,5 +256,8 @@ export default function HomePage() {
       </div>
 
     </div>
+    
   );
+  
+  
 }

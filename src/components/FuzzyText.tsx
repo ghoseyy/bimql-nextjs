@@ -1,16 +1,15 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface FuzzyTextProps {
   children: React.ReactNode;
   fontSize?: number | string;
   fontWeight?: string | number;
   fontFamily?: string;
-  color?: string;
+  color?: string; // default color for light/dark
   enableHover?: boolean;
   baseIntensity?: number;
   hoverIntensity?: number;
   className?: string;
-
 }
 
 const FuzzyText: React.FC<FuzzyTextProps> = ({
@@ -18,12 +17,29 @@ const FuzzyText: React.FC<FuzzyTextProps> = ({
   fontSize = 'clamp(2rem, 8vw, 8rem)',
   fontWeight = 900,
   fontFamily = 'inherit',
-  color = '#fff',
+  color: initialColor = '#fff', // rename prop to avoid conflict
   enableHover = true,
   baseIntensity = 0.18,
   hoverIntensity = 0.5
 }) => {
   const canvasRef = useRef<HTMLCanvasElement & { cleanupFuzzyText?: () => void }>(null);
+
+  // use the prop as initial state
+  const [currentColor, setCurrentColor] = useState(initialColor);
+
+  // Detect dark/light mode
+  useEffect(() => {
+    const updateColor = () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      setCurrentColor(isDark ? '#fff' : '#000');
+    };
+    updateColor();
+
+    const observer = new MutationObserver(updateColor);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     let animationFrameId: number;
@@ -32,27 +48,27 @@ const FuzzyText: React.FC<FuzzyTextProps> = ({
     if (!canvas) return;
 
     const init = async () => {
-      if (document.fonts?.ready) {
-        await document.fonts.ready;
-      }
+      if (document.fonts?.ready) await document.fonts.ready;
       if (isCancelled) return;
 
       const ctx = canvas.getContext('2d');
       if (!ctx) return;
 
       const computedFontFamily =
-        fontFamily === 'inherit' ? window.getComputedStyle(canvas).fontFamily || 'sans-serif' : fontFamily;
+        fontFamily === 'inherit'
+          ? window.getComputedStyle(canvas).fontFamily || 'sans-serif'
+          : fontFamily;
 
       const fontSizeStr = typeof fontSize === 'number' ? `${fontSize}px` : fontSize;
       let numericFontSize: number;
+
       if (typeof fontSize === 'number') {
         numericFontSize = fontSize;
       } else {
         const temp = document.createElement('span');
         temp.style.fontSize = fontSize;
         document.body.appendChild(temp);
-        const computedSize = window.getComputedStyle(temp).fontSize;
-        numericFontSize = parseFloat(computedSize);
+        numericFontSize = parseFloat(window.getComputedStyle(temp).fontSize);
         document.body.removeChild(temp);
       }
 
@@ -83,7 +99,7 @@ const FuzzyText: React.FC<FuzzyTextProps> = ({
       const xOffset = extraWidthBuffer / 2;
       offCtx.font = `${fontWeight} ${fontSizeStr} ${computedFontFamily}`;
       offCtx.textBaseline = 'alphabetic';
-      offCtx.fillStyle = color;
+      offCtx.fillStyle = currentColor;
       offCtx.fillText(text, xOffset - actualLeft, actualAscent);
 
       const horizontalMargin = 50;
@@ -145,9 +161,7 @@ const FuzzyText: React.FC<FuzzyTextProps> = ({
       if (enableHover) {
         canvas.addEventListener('mousemove', handleMouseMove);
         canvas.addEventListener('mouseleave', handleMouseLeave);
-        canvas.addEventListener('touchmove', handleTouchMove, {
-          passive: false
-        });
+        canvas.addEventListener('touchmove', handleTouchMove, { passive: false });
         canvas.addEventListener('touchend', handleTouchEnd);
       }
 
@@ -169,11 +183,9 @@ const FuzzyText: React.FC<FuzzyTextProps> = ({
     return () => {
       isCancelled = true;
       window.cancelAnimationFrame(animationFrameId);
-      if (canvas && canvas.cleanupFuzzyText) {
-        canvas.cleanupFuzzyText();
-      }
+      if (canvas && canvas.cleanupFuzzyText) canvas.cleanupFuzzyText();
     };
-  }, [children, fontSize, fontWeight, fontFamily, color, enableHover, baseIntensity, hoverIntensity]);
+  }, [children, fontSize, fontWeight, fontFamily, currentColor, enableHover, baseIntensity, hoverIntensity]);
 
   return <canvas ref={canvasRef} />;
 };
