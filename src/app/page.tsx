@@ -1,6 +1,6 @@
 "use client";
 import { FloatingNav } from "@/components/ui/floating-navbar";
-import Silk from "@/components/Silk";
+import DarkVeil from "@/components/DarkVeil";
 import { Button } from "@/components/ui/button";
 import ScrollReveal from "@/components/ScrollReveal"; 
 import ScrollFloat from "@/components/ScrollFloat";
@@ -14,6 +14,8 @@ import GradientText from '@/components/GradientText';
 import SpotlightCard from '@/components/SpotlightCard';
 import ShinyText from '@/components/ShinyText';
 import ScrollVelocity from '@/components/ScrollVelocity';
+import ReviewSpotlightMarquee from "@/components/ReviewSpotlightMarquee";
+
 
 
 const techLogos = [
@@ -71,15 +73,16 @@ export default function HomePage() {
     {/* Floating Navbar */}
 <FloatingNav navItems={navItems} />
 
-      {/* Hero section with Silk */}
+      {/* Hero section */}
       <section className="relative h-screen w-screen overflow-hidden">
         <div className="absolute inset-0">
-          <Silk
-            speed={5}
-            scale={1}
-            color="#034e90"
-            noiseIntensity={1.5}
-            rotation={0}
+          <DarkVeil 
+          speed={1}
+          hueShift={0}
+          noiseIntensity={0}
+          scanlineIntensity={0}
+          scanlineFrequency = {0.}
+          warpAmount = {0}
           />
         </div>
 
@@ -133,25 +136,6 @@ export default function HomePage() {
         ariaLabel="Technology partners"
       />
     </section>
-{/* shiny gradient Section */}
-<div className="flex flex-col items-center text-center bg-white dark:bg-black text-black dark:text-white py-20">
-  <GradientText
-    colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
-    animationSpeed={3}
-    showBorder={false}
-    className="mb-4"
-  >
-    <h3 className="testimonials-title text-6xl font-bold">
-      Loved by devs worldwide
-    </h3>
-  </GradientText>
-  <ShinyText 
-    className="text-lg text-gray-600 dark:text-gray-300 custom-class"
-    text="Join our community of developers building amazing projects with bimql."
-    disabled={false}
-    speed={2}
-  />
-</div>
 
 {/* Spotlight Cards Section */}
 <section className="px-4 py-20 bg-white dark:bg-black text-white">
@@ -205,7 +189,28 @@ export default function HomePage() {
         bimql Error
       </FuzzyText>
     </div> */}
+{/* Testimonials title + Shiny text */}
+<div className="flex flex-col items-center text-center bg-white dark:bg-black text-black dark:text-white py-20">
+  <GradientText
+    colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+    animationSpeed={3}
+    showBorder={false}
+    className="mb-4"
+  >
+    <h3 className="testimonials-title text-6xl font-bold">
+      Loved by devs worldwide
+    </h3>
+  </GradientText>
+  <ShinyText 
+    className="text-lg text-gray-600 dark:text-gray-300 custom-class"
+    text="Join our community of developers building amazing projects with bimql."
+    disabled={false}
+    speed={2}
+  />
+</div>
 
+{/* ✅ Spotlight Marquee with reviews */}
+<ReviewSpotlightMarquee />
 
 
       {/* Footer */}

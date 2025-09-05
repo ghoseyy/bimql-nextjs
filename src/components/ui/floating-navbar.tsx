@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { cn } from "@/lib/utils";
-import ThemeToggle from "@/components/ui/ThemeToggle"; // Adjust path if needed
+import { AnimatedThemeToggler } from "../magicui/animated-theme-toggler";
 
 export const FloatingNav = ({
   navItems,
@@ -41,7 +41,7 @@ export const FloatingNav = ({
       </button>
 
       {/* Theme toggle */}
-      <ThemeToggle />
+      <AnimatedThemeToggler />
     </div>
   );
 };
