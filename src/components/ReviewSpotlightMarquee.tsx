@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import { Marquee } from "@/components/magicui/marquee";
 import SpotlightCard from "@/components/SpotlightCard";
+import GradientText from "@/components/GradientText";
+import ShinyText from "@/components/ShinyText";
 import { useTheme } from "@/hooks/useTheme";
 
 interface Blog {
@@ -31,7 +33,7 @@ function BlogCard({ img, name, username, body }: Blog) {
             src={img}
           />
           <div className="flex min-w-0 flex-1 flex-col">
-            <figcaption className="truncate text-sm font-medium dark:text-white light: text-white">
+            <figcaption className="truncate text-sm font-medium text-gray-400 dark:text-white">
               {name}
             </figcaption>
           </div>
@@ -102,28 +104,47 @@ export default function BlogSpotlightMarquee() {
   const secondRow = blogs.slice(oneThird, oneThird * 2);
   const thirdRow = blogs.slice(oneThird * 2);
 
-  return (
-    <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-20 bg-white dark:bg-black">
-      {/* Blog rows */}
-      <Marquee className="[--duration:25s]">
-        {firstRow.map((blog, index) => (
-          <BlogCard key={`${blog.username}-${index}`} {...blog} />
-        ))}
-      </Marquee>
-      <Marquee reverse className="[--duration:25s]">
-        {secondRow.map((blog, index) => (
-          <BlogCard key={`${blog.username}-${index}`} {...blog} />
-        ))}
-      </Marquee>
-      <Marquee className="[transform:translateX(12px)] [--duration:25s]">
-        {thirdRow.map((blog, index) => (
-          <BlogCard key={`${blog.username}-${index}`} {...blog} />
-        ))}
-      </Marquee>
+return (
+  <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-20 bg-white dark:bg-black">
+    {/* Blog Section Title + Shiny Text */}
+    <div className="flex flex-col items-center text-center mb-12">
+      <GradientText
+        colors={["#8660fa", "#a855f7", "#8400ff", "#a855f7", "#a855f7"]}
+        animationSpeed={5}
+        showBorder={false}
+        className="mb-2"
+      >
+        <h3 className="text-6xl font-bold">Tiny Rants</h3>
+      </GradientText>
 
-      {/* Gradient fade edges */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-white dark:from-black"></div>
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-white dark:from-black"></div>
+      <ShinyText
+        className="text-xl text-gray-600 dark:text-gray-300"
+        text="Thoughts, projects, and random adventures."
+        disabled={false}
+        speed={2}
+      />
     </div>
-  );
+
+    {/* Blog rows */}
+    <Marquee className="[--duration:25s]">
+      {firstRow.map((blog, index) => (
+        <BlogCard key={`${blog.username}-${index}`} {...blog} />
+      ))}
+    </Marquee>
+    <Marquee reverse className="[--duration:25s]">
+      {secondRow.map((blog, index) => (
+        <BlogCard key={`${blog.username}-${index}`} {...blog} />
+      ))}
+    </Marquee>
+    <Marquee className="[transform:translateX(12px)] [--duration:25s]">
+      {thirdRow.map((blog, index) => (
+        <BlogCard key={`${blog.username}-${index}`} {...blog} />
+      ))}
+    </Marquee>
+
+    {/* Gradient fade edges */}
+    <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-white dark:from-black"></div>
+    <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-white dark:from-black"></div>
+  </div>
+);
 }
