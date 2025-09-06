@@ -1,0 +1,58 @@
+{
+  "blogs": [
+    {
+      "name": "Bimql",
+      "username": "@bimql",
+      "body": "I've never seen anything like this before. It's amazing. I love it.",
+      "img": "https://images.pexels.com/users/avatars/162267621/bimal-chhetry-500.jpeg?auto=compress&fit=crop&h=130&w=130&dpr=1"
+    },
+    {
+      "name": "Bimql",
+      "username": "@bimql",
+      "body": "I don't know what to say. I'm speechless. This is amazing.",
+      "img": "https://images.pexels.com/users/avatars/162267621/bimal-chhetry-500.jpeg?auto=compress&fit=crop&h=130&w=130&dpr=1"
+    },
+    {
+      "name": "John",
+      "username": "@john",
+      "body": "I'm at a loss for words. This is amazing. I love it.",
+      "img": "https://images.pexels.com/users/avatars/162267621/bimal-chhetry-500.jpeg?auto=compress&fit=crop&h=130&w=130&dpr=1"
+    },
+    {
+      "name": "Jane",
+      "username": "@jane",
+      "body": "Super smooth and delightful experience. I'm impressed!",
+      "img": "https://avatar.vercel.sh/jane"
+    },
+    {
+      "name": "Jenny",
+      "username": "@jenny",
+      "body": "This library makes my UI shine ✨. Totally worth it.",
+      "img": "https://avatar.vercel.sh/jenny"
+    },
+    {
+      "name": "James",
+      "username": "@james",
+      "body": "Clean animations and easy to use. Highly recommend!",
+      "img": "https://avatar.vercel.sh/james"
+    },
+    {
+      "name": "Bimql",
+      "username": "@ack",
+      "body": "I've never seen anything like this before. It's amazing. I love it.",
+      "img": "https://avatar.vercel.sh/bimql"
+    },
+    {
+      "name": "Bimql",
+      "username": "@ill",
+      "body": "I don't know what to say. I'm speechless. This is amazing.",
+      "img": "https://avatar.vercel.sh/bimql"
+    },
+    {
+      "name": "John",
+      "username": "@ohn",
+      "body": "I'm at a loss for words. This is amazing. I love it.",
+      "img": "https://avatar.vercel.sh/john"
+    }
+  ]
+}

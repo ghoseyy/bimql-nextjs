@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 type props = {
   className?: string;
-    children?: React.ReactNode; // accept children
+  children?: React.ReactNode; // accept children
 };
 
 export const AnimatedThemeToggler = ({ className }: props) => {
