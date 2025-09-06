@@ -43,27 +43,35 @@
   --radius-xl: calc(var(--radius) + 4px);
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+
   @keyframes marquee {
     from {
       transform: translateX(0);
     }
+
     to {
       transform: translateX(calc(-100% - var(--gap)));
     }
   }
+
   @keyframes marquee-vertical {
     from {
       transform: translateY(0);
     }
+
     to {
       transform: translateY(calc(-100% - var(--gap)));
     }
   }
-  --animate-gradient: gradient 8s linear infinite
-;
+
+  --animate-gradient: gradient 8s linear infinite;
+
   @keyframes gradient {
-  to {
-    background-position: var(--bg-size, 300%) 0;}}}
+    to {
+      background-position: var(--bg-size, 300%) 0;
+    }
+  }
+}
 
 :root {
   --radius: 0.625rem;
@@ -138,6 +146,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-jersey-10), "Jersey 10", sans-serif;
@@ -237,6 +246,19 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
+  /* Hide scrollbar */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+
 }
 
 ::view-transition-old(root),

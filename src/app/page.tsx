@@ -15,7 +15,7 @@ import ReviewSpotlightMarquee from "@/components/ReviewSpotlightMarquee";
 import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text";
 import FuzzyText from "@/components/FuzzyText";
 import { Safari } from "@/components/magicui/safari";
-
+import Iphone15Pro from "@/components/magicui/iphone-15-pro";
 
 import {
   SiReact,
@@ -54,12 +54,12 @@ const navItems = [
     icon: <IconHome className="h-4 w-4 text-neutral-500 dark:text-white" />,
   },
   {
-    name: "About",
-    link: "/about",
+    name: "Resume",
+    link: "https://bimql.link/resume/",
     icon: <IconUser className="h-4 w-4 text-neutral-500 dark:text-white" />,
   },
   {
-    name: "Contact",
+    name: "Merch",
     link: "/contact",
     icon: <IconMessage className="h-4 w-4 text-neutral-500 dark:text-white" />,
   },
@@ -125,11 +125,16 @@ export default function HomePage() {
 
           {/* Animated Gradient Button above the heading */}
           <div className="mb-6 flex items-center justify-center">
-            <div className="group relative flex items-center justify-center rounded-full px-4 py-1.5 shadow-[inset_0_-8px_10px_#8fdfff1f] transition-shadow duration-500 ease-out hover:shadow-[inset_0_-5px_10px_#8fdfff3f]">
+            <a
+              href="https://bimql.link/resume/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative flex items-center justify-center rounded-full px-4 py-1.5 shadow-[inset_0_-8px_10px_#8fdfff1f] transition-shadow duration-500 ease-out hover:shadow-[inset_0_-5px_10px_#8fdfff3f]"
+            >
               <span
                 className="absolute inset-0 block h-full w-full animate-gradient rounded-[inherit] bg-gradient-to-r from-[#8660fa]/50 via-[#a855f7]/50 to-[#8400ff]/50 bg-[length:300%_100%] p-[1px]"
                 style={{
-                  WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)", //#8660fa", "#a855f7", "#8400ff", "#a855f7", "#fff
+                  WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
                   WebkitMaskComposite: "destination-out",
                   mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
                   maskComposite: "subtract",
@@ -140,8 +145,9 @@ export default function HomePage() {
               <AnimatedGradientText className="text-2xl font-medium">
                 Resume →
               </AnimatedGradientText>
-            </div>
+            </a>
           </div>
+
 
           {/* Heading */}
           <h1 className="text-7xl font-bold text-white drop-shadow-lg">
@@ -159,45 +165,38 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="relative z-10 flex flex-col items-center justify-center bg-white px-4 py-10 dark:bg-black">
-        
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            {/* Card 1 */}
-            <SpotlightCard spotlightColor="rgba(128, 90, 255, 0.25)">
-              <h2 className="mb-3 text-6xl font-bold text-purple-400 dark:text-white">Developer</h2>
-              <h3 className="mb-2 text-2xl font-medium">
-                I do code Sometimes.
-              </h3>
-              <p className="text-lg text-gray-300">
-                most of the time taken by debugging.
-              </p>
-            </SpotlightCard>
+      <section className="relative z-10 flex flex-col items-center justify-center bg-white px-4 py-16 dark:bg-black">
+  <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+  {/* Left column: two stacked cards (less width) */}
+  <div className="md:col-span-3 flex flex-col gap-8">
+    {/* Card 1 */}
+    <SpotlightCard spotlightColor="rgba(128, 90, 255, 0.25)">
+      <h2 className="mb-3 text-6xl font-bold text-purple-400 dark:text-white">Developer</h2>
+      <h3 className="mb-2 text-2xl font-medium">I do code Sometimes.</h3>
+      <p className="text-lg text-gray-300">most of the time taken by debugging.</p>
+    </SpotlightCard>
 
-            {/* Card 2 */}
-            <SpotlightCard spotlightColor="rgba(64, 255, 170, 0.25)">
-              <h2 className="mb-3 text-6xl font-bold text-purple-400 dark:text-white">Designer</h2>
-              <h3 className="mb-2 text-2xl font-medium">
-                UI/UX Enthusiast
-              </h3>
-              <p className="text-lg text-gray-300">
-                Crafting seamless digital experiences
-              </p>
-            </SpotlightCard>
+    {/* Card 2 */}
+    <SpotlightCard spotlightColor="rgba(64, 255, 170, 0.25)">
+      <h2 className="mb-3 text-6xl font-bold text-purple-400 dark:text-white">Designer</h2>
+      <h3 className="mb-2 text-2xl font-medium">UI/UX Enthusiast</h3>
+      <p className="text-lg text-gray-300">Crafting seamless digital experiences</p>
+    </SpotlightCard>
+  </div>
 
-            {/* Card 3 */}
-            <SpotlightCard spotlightColor="rgba(255, 64, 121, 0.25)">
-              <h2 className="mb-3 text-6xl font-bold text-purple-400 dark:text-white">Core Skills</h2>
-              <h3 className="mb-2 text-2xl font-medium">
-                Multimedia Creator
-              </h3>
-              <p className="text-lg text-gray-300">
-                Photography, Videography, and 3D Modeling
-              </p>
-            </SpotlightCard>
-          </div>
-        </div>
-      </section>
+  {/* Right column: single card (more width) */}
+  <div className="md:col-span-2 h-full">
+    <SpotlightCard spotlightColor="rgba(255, 64, 121, 0.25)" className="h-full">
+      <h2 className="mb-3 text-6xl font-bold text-purple-400 dark:text-white">Core Skills</h2>
+      <h3 className="mb-2 text-2xl font-medium">Multimedia Creator</h3>
+      <p className="text-lg text-gray-300">Photography, Videography, and 3D Modeling</p>
+    </SpotlightCard>
+  </div>
+</div>
+
+  </div>
+</section>
 
       <section>
         <TextReveal className="relative z-10 flex flex-col items-center justify-center bg-white dark:bg-black px-6 py-10 text-black dark:text-white transition-colors duration-300 text-center">
@@ -268,7 +267,72 @@ export default function HomePage() {
         bimql Error
       </FuzzyText>
     </div> */}
-      
+{/* Safari Demo Section */}
+<section className="relative z-10 flex flex-col md:flex-row items-center bg-white px-4 py-16 dark:bg-black">
+  {/* Left Side Text */}
+<div className="mb-8 md:mb-0 md:w-1/2 md:pr-8 text-center md:text-left relative z-20 px-12">
+  <h2 className="mb-4 text-5xl font-bold text-black dark:text-white">
+    Game I have built while {"{condition}"} 
+    <span className="text-purple-400 dark:text-white"> learning</span>
+  </h2>
+
+  {/* Downloads Section */}
+<div className="flex flex-col sm:flex-row items-center gap-4 text-2xl text-gray-700 dark:text-gray-300">
+  <span>10k+ Downloads</span>
+  <span className="hidden sm:inline">|</span>
+
+  <a
+    href="#"
+    className="group relative flex items-center justify-center rounded-full px-6 py-2 shadow-[inset_0_-8px_10px_#8fdfff1f] transition-shadow duration-500 ease-out hover:shadow-[inset_0_-5px_10px_#8fdfff3f]"
+  >
+    <span
+      className="absolute inset-0 block h-full w-full animate-gradient rounded-[inherit] bg-gradient-to-r from-[#8660fa]/50 via-[#a855f7]/50 to-[#8400ff]/50 bg-[length:300%_100%] p-[1px]"
+      style={{
+        WebkitMask:
+          "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+        WebkitMaskComposite: "destination-out",
+        mask:
+          "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+        maskComposite: "subtract",
+        WebkitClipPath: "padding-box",
+      }}
+    />
+    Download App
+  </a>
+</div>
+
+</div>
+
+{/* Desktop Safari + iPhone */}
+<div className="hidden md:flex md:w-1/2 justify-start relative z-10 overflow-hidden">
+  {/* Safari */}
+  <div className="rounded-xl border-4 border-white dark:border-white h-96 md:h-[600px]">
+    <Safari
+      url="com.bimql.ludo"
+      className="rounded-xl h-full overflow-hidden -translate-x-32"
+      imageSrc="/image.png"
+    />
+  </div>
+  {/* iPhone overlay */}
+  <Iphone15Pro
+    className="absolute shadow-2xl -top-12 left-10 z-20 w-48 md:w-64"
+    src="/image.png"
+  />
+</div>
+
+{/* Mobile iPhone only */}
+<div className="md:hidden flex justify-center relative z-10">
+  <Iphone15Pro
+    className="w-48"
+    src="/image.png"
+  />
+</div>
+
+
+
+</section>
+
+
       {/* ✅ Spotlight Marquee with reviews */}
       <ReviewSpotlightMarquee />
 
